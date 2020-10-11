@@ -1,7 +1,8 @@
-function getData(cb) {
+const baseURL = "https://ci-swapi.herokuapp.com/api/";
+function getData(type, cb) {
     var xhr = new XMLHttpRequest();
 
-    xhr.open("GET", "https://ci-swapi.herokuapp.com/api/");
+    xhr.open("GET", baseURL + type);
     xhr.send();
 
     xhr.onreadystatechange = function() {
@@ -11,8 +12,8 @@ function getData(cb) {
     };
 }
 
-function printDataToConsole(data) {
-    console.log(data);
+function writeTiDocument(type){
+    getData(type, function() {
+        document.getElementById("data").innerHTML = data;
+    });
 }
-
-getData(printDataToConsole);
